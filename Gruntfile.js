@@ -43,7 +43,8 @@ module.exports = function (grunt) {
     jshint: {
       files: [
         'index.js',
-        'lib/**/*.js'
+        'lib/**/*.js',
+        'components/**/lib/**/*.js'
       ],
       options: {
         reporter: require('jshint-stylish'),
@@ -77,7 +78,8 @@ module.exports = function (grunt) {
           selleck: true,
           outdir: './docs',
           paths: [
-            './lib'
+            './lib',
+            './components/**/lib'
           ],
           exclude: '*.test.js'
         }

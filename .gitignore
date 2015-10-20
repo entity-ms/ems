@@ -1,4 +1,9 @@
 /node_modules/
 /docs/
 /coverage/
+/mongodb-data/
+/components/
+/examples/
+/packages/
 /npm-debug.log
+/mongod

@@ -1,18 +1,17 @@
 {
-  "name": "ems-cental",
-  "description": "Provides the EntityMS Centralized Component.",
+  "name": "ems",
+  "description": "Provides the EntityMS centralized library.",
   "keywords": [
-    "EntityMS",
-    "Centralized Component"
+    "EntityMS"
   ],
   "author": "Orgun109uk <orgun109uk@gmail.com>",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/entity-ms/ems-central.git"
+    "url": "git://github.com/entity-ms/ems.git"
   },
   "main": "./lib/index.js",
-  "bin": "./bin/ems-central.js",
+  "bin": "./bin/ems.js",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
@@ -35,7 +34,9 @@
     "ems-commands": "git://github.com/entity-ms/ems-commands.git",
     "ems-config": "git://github.com/entity-ms/ems-config.git",
     "ems-error": "git://github.com/entity-ms/ems-error.git",
-    "ems-request": "git://github.com/entity-ms/ems-request.git"
+    "ems-request": "git://github.com/entity-ms/ems-request.git",
+    "express": "^4.13.3",
+    "swig": "^1.4.2"
   },
   "scripts": {
     "start": "node index.js",

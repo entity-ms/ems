@@ -1,18 +1,19 @@
 /**
- * @todo
+ * Starts the Central Component as a cluster.
+ *
+ * @author Orgun109uk <orgun109uk@gmail.com>
  */
 
 var path = require('path'),
     cluster = require('cluster'),
-    CentralComponent = require('./lib');
+    EntityMS = require('./lib');
 
-var numCPUs = require('os').cpus().length;
+var maxWorkers = require('os').cpus().length;
 
 if (cluster.isMaster) {
   process.title = 'ems-central';
 
-  // Fork workers.
-  for (var i = 0; i < numCPUs; i++) {
+  for (var i = 0; i < maxWorkers; i++) {
     cluster.fork();
   }
 
@@ -21,6 +22,6 @@ if (cluster.isMaster) {
       console.log('worker ' + worker.process.pid + ' died');
     });
 } else {
-  new CentralComponent(path.join(__dirname, 'config.json'))
+  new EntityMS(path.join(__dirname, 'config', 'config.json'))
     .start();
 }
