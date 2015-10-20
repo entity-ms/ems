@@ -1,3 +1,0 @@
-[submodule "ems-commands"]
-	path = packages/ems-commands
-	url = https://github.com/entity-ms/ems-commands
