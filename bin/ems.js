@@ -69,7 +69,17 @@ request.ping(function (alive) {
   program
     .parse(process.argv);
 
-  if (!process.argv.slice(2).length) {
+  var pArgs = process.argv.slice(2);
+  if (!pArgs.length) {
     program.outputHelp();
+  } else if (
+    pArgs.length > 0 &&
+    program._events[pArgs[0]] === undefined
+  ) {
+    console.log(
+      '[', 'error'.bold.red, ']', 'Unknown command', pArgs[0].bold
+    );
   }
+
+  console.log('');
 });
