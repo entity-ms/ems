@@ -1,6 +1,6 @@
 {
-  "name": "ems",
-  "description": "Provides the EntityMS centralized library.",
+  "name": "entity-ms",
+  "description": "Provides the EntityMS central component.",
   "keywords": [
     "EntityMS"
   ],
@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/entity-ms/ems.git"
+    "url": "git://github.com/entity-ms/entity-ms.git"
   },
   "main": "./lib/index.js",
   "bin": "./bin/ems.js",
