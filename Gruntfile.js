@@ -27,13 +27,23 @@ module.exports = function (grunt) {
     simplemocha: {
       dist: {
         src: [
-          './tests/**/*.test.js'
+          './tests/**/*.test.js',
+          './components/**/tests/*.test.js',
+          './components/**/tests/**/*.test.js',
+          './packages/**/tests/*.test.js',
+          './packages/**/tests/**/*.test.js'
         ]
       }
     },
     mocha_istanbul: {
       coverage: {
-        src: './tests/**/*.test.js'
+        src: [
+          './tests/**/*.test.js',
+          './components/**/tests/*.test.js',
+          './components/**/tests/**/*.test.js',
+          './packages/**/tests/*.test.js',
+          './packages/**/tests/**/*.test.js'
+        ]
       }
     },
 
