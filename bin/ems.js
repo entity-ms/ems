@@ -10,13 +10,10 @@ var path = require('path'),
     cp = require('child_process'),
     glob = require('glob'),
     program = require('commander'),
-    terminal = require('color-terminal'),
+    colors = require('colors'),
     Config = require('ems-config'),
     Request = require('ems-request'),
-    info = require('../package.json'),
-
-    statusMsg = require('../lib/cli/statusMsg'),
-    infoMsg = require('../lib/cli/infoMsg');
+    info = require('../package.json');
 
 var config = new Config('../config.json'),
     request = new Request(
@@ -38,31 +35,16 @@ function charFullWidth(char) {
   return str + '\n';
 }
 
-terminal.color({
-  attribute: 'bold',
-  foreground: 'yellow'
-})
-.write(charFullWidth())
-.write('* EntityMS (eMS) CLI [v' + info.version + ']\n');
+console.log(charFullWidth().bold.yellow);
+console.log('*'.bold.yellow + (' EntityMS (eMS) CLI [v' + info.version + ']').bold);
 
 request.ping(function (alive) {
-  terminal
-    .color({
-      attribute: 'bold',
-      foreground: 'yellow'
-    })
-    .write('* Status: ')
-    .color({
-      attribute: 'bold',
-      foreground: alive ? 'green' : 'red'
-    })
-    .write((alive ? 'Alive' : 'Dead') + '\n')
-    .color({
-      attribute: 'bold',
-      foreground: 'yellow'
-    })
-    .write(charFullWidth())
-    .reset();
+  var status = alive ?
+    'Alive'.bold.green :
+    'Dead'.bold.red;
+
+  console.log('*'.bold.yellow + ' Status: '.bold + status);
+  console.log(charFullWidth().bold.yellow);
 
   program
     .version('Version: ' + info.version)/*

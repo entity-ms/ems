@@ -31,7 +31,7 @@
   "dependencies": {
     "async": "^1.4.2",
     "body-parser": "^1.14.1",
-    "color-terminal": "0.0.3-4",
+    "colors": "^1.1.2",
     "commander": "^2.8.1",
     "ems-component": "git://github.com/entity-ms/ems-component.git",
     "ems-config": "git://github.com/entity-ms/ems-config.git",
