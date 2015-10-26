@@ -8,6 +8,7 @@ var path = require('path'),
     fs = require('fs'),
     http = require('http'),
     cp = require('child_process'),
+    glob = require('glob'),
     program = require('commander'),
     terminal = require('color-terminal'),
     Config = require('ems-config'),
@@ -69,11 +70,18 @@ request.ping(function (alive) {
     .option('-P, --pineapple', 'Add pineapple')
     .option('-b, --bbq-sauce', 'Add bbq sauce')*/;
 
-  require('../lib/cli/commands/service')(config, request);
+  glob.sync(path.join(
+    __dirname, '..', 'lib', 'cli', 'commands', 'dead', '*.js'
+  )).forEach(function (item) {
+    require(path.relative(__dirname, item))(config, request);
+  });
 
   if (alive) {
-    // @todo
-    require('../lib/cli/commands/info')(config, request);
+    glob.sync(path.join(
+      __dirname, '..', 'lib', 'cli', 'commands', 'alive', '*.js'
+    )).forEach(function (item) {
+      require(path.relative(__dirname, item))(config, request);
+    });
   }
 
   program
