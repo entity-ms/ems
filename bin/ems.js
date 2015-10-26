@@ -32,7 +32,7 @@ function charFullWidth(char) {
     str += char || '*';
   }
 
-  return str + '\n';
+  return str;
 }
 
 console.log(charFullWidth().bold.yellow);
