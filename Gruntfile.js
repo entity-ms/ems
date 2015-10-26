@@ -77,9 +77,9 @@ module.exports = function (grunt) {
           attributesEmit: true,
           selleck: true,
           outdir: './docs',
-          paths: [
-            './lib',
-            './components/**/lib'
+          paths: ['./'],
+          ignorePaths: [
+            'node_modules', 'mongodb-data', 'docs', 'config'
           ],
           exclude: '*.test.js'
         }
