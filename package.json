@@ -43,8 +43,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "stop": "killall -SIGKILL ems-central -g",
-    "start-standalone": "node -e \"require('./')('default');\"",
-    "start-standalone-debug": "node --debug-brk debug.js"
+    "stop": "killall -SIGKILL ems-central -g"
   }
 }
