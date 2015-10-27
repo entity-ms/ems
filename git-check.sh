@@ -23,14 +23,14 @@ do
   cd ${dir}
 
   # If there are changes, print some status and branch info of this repo:
-  git status -s | grep -v '??' &> /dev/null && {
+  git status -s | grep -v '\n' &> /dev/null && {
     echo -e "\n \E[1;31m ${dir}\E[0m"
-    git status -s | grep -v '??'
+    git status -s | grep -v '\n'
     let count_changed=${count_changed}+1
   }
 
   # If verbose, print info in the case of no changes:
-  git status -s | grep -v '??' &> /dev/null || {
+  git status -s | grep -v '\n' &> /dev/null || {
     if [ ${verbose} -ne 0 ]; then echo "Nothing to do for ${dir}"; fi
     let count_unchanged=${count_unchanged}+1
   }
