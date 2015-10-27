@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * @todo
+ * Provides the EntityMS CLI functionality.
+ *
+ * @author Orgun109uk <orgun109uk@gmail.com>
  */
 
 var path = require('path'),
@@ -13,7 +15,8 @@ var path = require('path'),
     colors = require('colors'),
     Config = require('ems-config'),
     Request = require('ems-request'),
-    info = require('../package.json');
+    info = require('../package.json'),
+    statusMsg = require('../lib/cli/statusMsg');
 
 var config = new Config('../config.json'),
     request = new Request(
@@ -24,7 +27,12 @@ var config = new Config('../config.json'),
     );
 
 /**
- * @todo
+ * Helper function to output a full line of a provided character.
+ *
+ * @method charFullWidth
+ * @param {String} [char='*'] The character to output as full length of the
+ *   terminal window.
+ * @return {String} The outputted line.
  */
 function charFullWidth(char) {
   var str = '';
@@ -47,10 +55,10 @@ request.ping(function (alive) {
   console.log(charFullWidth().bold.yellow);
 
   program
-    .version('Version: ' + info.version)/*
-    .option('-p, --peppers', 'Add peppers')
-    .option('-P, --pineapple', 'Add pineapple')
-    .option('-b, --bbq-sauce', 'Add bbq sauce')*/;
+    .version('Version: ' + info.version)
+    .option('-fy, --force-yes', 'Always use a yes response.')
+    .option('-fn, --force-no', 'Always use a no response.')
+    .option('-v, --verbose', 'Output more verbose details.');
 
   glob.sync(path.join(
     __dirname, '..', 'lib', 'cli', 'commands', 'dead', '*.js'
@@ -76,9 +84,7 @@ request.ping(function (alive) {
     pArgs.length > 0 &&
     program._events[pArgs[0]] === undefined
   ) {
-    console.log(
-      '[', 'error'.bold.red, ']', 'Unknown command', pArgs[0].bold
-    );
+    statusMsg('Unknown command ' + pArgs[0].bold, 'error');
   }
 
   console.log('');
