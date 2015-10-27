@@ -22,18 +22,17 @@ do
   dir=`echo ${repo} | sed -e 's/\/.git/\//'`
   cd ${dir}
 
-  # If there are changes, print some status and branch info of this repo:
-  git status -s | grep -v '\n' &> /dev/null && {
-    echo -e "\n \E[1;31m ${dir}\E[0m"
-    git status -s | grep -v '\n'
-    let count_changed=${count_changed}+1
-  }
+  git_status=($(git status -s))
 
-  # If verbose, print info in the case of no changes:
-  git status -s | grep -v '\n' &> /dev/null || {
+  # If there are changes, print some status and branch info of this repo:
+  if [ ! ${#git_status[@]} -eq 0 ]; then
+    echo -e "\n \E[1;31m ${dir}\E[0m"
+    git status -s
+    let count_changed=${count_changed}+1
+  else
     if [ ${verbose} -ne 0 ]; then echo "Nothing to do for ${dir}"; fi
     let count_unchanged=${count_unchanged}+1
-  }
+  fi
 
   # cd back:
   cd - &> /dev/null
